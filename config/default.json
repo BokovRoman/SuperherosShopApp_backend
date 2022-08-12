@@ -1,0 +1,4 @@
+{
+    "port":5000,
+    "mongoUrl":"mongodb+srv://BokovRoman:BokovRoman@cluster0.enqsi.mongodb.net/heroes?retryWrites=true&w=majority"
+}
