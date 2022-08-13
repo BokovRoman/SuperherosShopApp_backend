@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-// import config from "config";
 import mongoose from "mongoose";
 
 import { registerValidation, loginValidation, heroCreateValidation } from './validations/validations.js';
@@ -8,11 +7,8 @@ import { UserController, HeroController} from './controllers/index.js';
 
 import { checkAuth, handleValidationErrors } from './utils/index.js';
 
-// const routes = require("./routes/heroes");
-
-
-mongoose.connect(
-    process.env.MONGODB_URL)
+mongoose
+    .connect(process.env.MONGODB_URL)
     .then(() => console.log('DB OK!'))
     .catch((err)=>console.log('DB error', err))
 
@@ -21,9 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
-// app.use("/api/heroes");
 
-// const PORT = config.get('port') || 5000;
 
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
 app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register )
@@ -43,3 +37,5 @@ app.listen(process.env.PORT||5000, (err) => {
     console.log(`Server started  on port ${PORT}`)
 });
 
+
+// mongodb+srv://BokovRoman:BokovRoman@cluster0.enqsi.mongodb.net/heroes?retryWrites=true&w=majority
